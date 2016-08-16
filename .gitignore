@@ -1,0 +1,17 @@
+/bin/
+*.DS_Store
+/build
+/out
+/.idea
+#/.settings
+/work
+webapp/.idea/
+*.log
+*.log.*
+/target
+
+*.class
+
+# Package Files #
+*.war
+*.ear
