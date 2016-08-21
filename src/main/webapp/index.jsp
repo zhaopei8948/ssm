@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <body>
 <h2>Hello World!
 ${ user.userName }
