@@ -7,9 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hnjiandao.domain.User;
 import com.hnjiandao.service.UserService;
+
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 @Controller
 @RequestMapping("/user")
@@ -46,5 +50,28 @@ public class UserController {
 		
 		System.out.println("id==" + id);
 		return "index";
+	}
+	
+	/**
+	 * 返回对象json例子1
+	 * @param userName
+	 * @return
+	 */
+	@RequestMapping(value = "/print/{userName}", method = RequestMethod.GET)
+	public @ResponseBody User printUser(@PathVariable("userName") String userName) {
+		User user = new User();
+		user.setUserId("userId112");
+		user.setUserName(userName);
+		return user;
+	}
+	
+	/**
+	 * 返回json例子2
+	 * @param userName
+	 * @return
+	 */
+	@RequestMapping(value = "/prints/{userName}", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
+	public @ResponseBody String printUserString(@PathVariable("userName") String userName) {
+		return "{\"userId\":\"userId123\", \"userName\":\"" + userName + "\"}";
 	}
 }
