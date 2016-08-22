@@ -3,24 +3,24 @@
 <generatorConfiguration>
 	
   <!-- 数据库驱动位置 location改成本地mysql驱动包位置-->
-  <classPathEntry location="C:\dfj\maven-repository\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar" />
+  <classPathEntry location="/Users/zhaopei/software/maven-repository/mysql/mysql-connector-java/5.1.39/mysql-connector-java-5.1.39.jar" />
 
   <context id="context1" targetRuntime="MyBatis3">
     <!-- 数据库连接url,用户名，密码 -->
-    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/public_declaration" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/public_declaration" driverClass="com.mysql.jdbc.Driver" password="root" userId="root" />
 
     <!-- 生成的实体类包名及位置 targetProject改成本地项目目录-->
-    <javaModelGenerator targetPackage="com.hnjiandao.domain.user" targetProject="C:\eclipeseWorkspace\PublicDeclarationSystem\src\main\java">
+    <javaModelGenerator targetPackage="com.hnjiandao.domain" targetProject="/Users/zhaopei/project/workspace/PublicDeclarationSystem/src/main/java">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
 
     <!-- 生成sql映射文件及位置 -->
-    <sqlMapGenerator targetPackage="com.hnjiandao.mapping.user" targetProject="C:\eclipeseWorkspace\PublicDeclarationSystem\src\main\java">
+    <sqlMapGenerator targetPackage="com.hnjiandao.mapping" targetProject="/Users/zhaopei/project/workspace/PublicDeclarationSystem/src/main/java">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
     <!-- 生成Dao的包名及位置 -->
-    <javaClientGenerator targetPackage="com.hnjiandao.dao.user" targetProject="C:\eclipeseWorkspace\PublicDeclarationSystem\src\main\java" type="XMLMAPPER" />
+    <javaClientGenerator targetPackage="com.hnjiandao.dao" targetProject="/Users/zhaopei/project/workspace/PublicDeclarationSystem/src/main/java" type="XMLMAPPER" />
 
     <table schema="" tableName="t_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
   </context>

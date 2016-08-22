@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.hnjiandao.domain.user.User;
+import com.hnjiandao.domain.User;
 import com.hnjiandao.service.UserService;
 
 @Controller

@@ -1,6 +1,6 @@
 package com.hnjiandao.service;
 
-import com.hnjiandao.domain.user.User;
+import com.hnjiandao.domain.User;
 
 public interface UserService {
 
