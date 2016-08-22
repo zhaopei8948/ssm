@@ -75,7 +75,7 @@
         value="classpath:com/hnjiandao/*/mapping/*.xml"指的是classpath(类路径)下com.hnjiandao.*.mapping包中的所有xml文件
         UserMapper.xml位于com.hnjiandao.user.mapping包下，这样UserMapper.xml就可以被自动扫描
          -->
-        <property name="mapperLocations" value="classpath:com/hnjiandao/mapping/*/*Mapper.xml" />
+        <property name="mapperLocations" value="classpath:com/hnjiandao/mapping/*Mapper.xml" />
     </bean>
     
     <!-- 配置扫描器 -->
@@ -119,7 +119,7 @@
         </tx:attributes>
     </tx:advice>
     <aop:config>
-        <aop:pointcut id="transactionPointcut" expression="execution(* com.hnjiandao.service..*Impl.*(..))" />
+        <aop:pointcut id="transactionPointcut" expression="execution(* com.hnjiandao.service.impl.*Impl.*(..))" />
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
     </aop:config>
 
