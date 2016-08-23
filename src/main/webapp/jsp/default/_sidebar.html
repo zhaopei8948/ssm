@@ -7,7 +7,7 @@
 
 
 <ul class="nav nav-list">
-    <li class="active list-menu" id="main-content">
+    <li class="active list-menu" id="statistics">
         <a id="main_content">
             <i class="icon-dashboard"></i>
             <span class="menu-text"> 控制台 </span>
@@ -189,6 +189,8 @@
     $(".sidebar .nav .list-menu").click(function () {
         var id = $(this).attr("id");
         var url = "_" + id + ".html";
+        var str = $(".list-menu"+"#"+id+" .menu-text").text();
+        $(".breadcrumb .active").text(str);
         $(".page-content").load(url);
     });
 </script>
