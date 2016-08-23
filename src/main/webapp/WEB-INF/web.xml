@@ -1,176 +1,59 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.hnjiandao</groupId>
-  <artifactId>PublicDeclarationSystem</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>PublicDeclarationSystem Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <dependencies>
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_3_0.dtd" >
 
-    <!-- spring 4.3.2 -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-      <version>4.3.2.RELEASE</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-      <version>4.3.2.RELEASE</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-tx</artifactId>
-      <version>4.3.2.RELEASE</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-aspects</artifactId>
-      <version>4.3.2.RELEASE</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>4.3.2.RELEASE</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-jdbc</artifactId>
-      <version>4.3.2.RELEASE</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-webmvc</artifactId>
-      <version>4.3.2.RELEASE</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-web</artifactId>
-      <version>4.3.2.RELEASE</version>
-    </dependency>
-    <!-- end spring 4.3.2 -->
-
-    <!-- mybatis-spring -->
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis-spring</artifactId>
-      <version>1.3.0</version>
-    </dependency>
-
-    <!-- mybatis -->
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis</artifactId>
-      <version>3.4.1</version>
-    </dependency>
-
-    <!-- druid -->
-    <dependency>
-      <groupId>com.alibaba</groupId>
-      <artifactId>druid</artifactId>
-      <version>1.0.24</version>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
-    </dependency>
-
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.39</version>
-    </dependency>
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+ 
+  <context-param>
+  	<param-name>contextConfigLocation</param-name>
+  	<param-value>classpath:spring/ApplicationContext.xml</param-value>
+  </context-param>
+  
+  <filter>  
+      <filter-name>encodingFilter</filter-name>  
+      <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+      <async-supported>true</async-supported>  
+      <init-param>  
+          <param-name>encoding</param-name>  
+          <param-value>UTF-8</param-value>  
+      </init-param>  
+  </filter>  
+  <filter-mapping>  
+      <filter-name>encodingFilter</filter-name>  
+      <url-pattern>/*</url-pattern>  
+  </filter-mapping>
     
-    <dependency>
-	    <groupId>javax.servlet</groupId>
-	    <artifactId>servlet-api</artifactId>
-	    <version>3.0-alpha-1</version>
-	</dependency>
-	
-	<dependency>
-	    <groupId>org.codehaus.jackson</groupId>
-	    <artifactId>jackson-mapper-asl</artifactId>
-	    <version>1.9.13</version>
-	</dependency>
-	
-	<dependency>
-	    <groupId>commons-fileupload</groupId>
-	    <artifactId>commons-fileupload</artifactId>
-	    <version>1.3.2</version>
-	</dependency>
-	
-	<dependency>
-	    <groupId>javax.servlet</groupId>
-	    <artifactId>jstl</artifactId>
-	    <version>1.2</version>
-	</dependency>
-	
-	<dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>2.8.1</version>
-    </dependency>
-    <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>2.8.1</version>
-    </dependency>
-  </dependencies>
-  <build>
-    <finalName>PublicDeclarationSystem</finalName>
-
-	<!-- 把src/main/java/中mybatis的文件，打包到相应位置 -->
-	<resources>
-		<resource>
-            <directory>src/main/resources</directory>
-            <includes>
-                <include>**/*.xml</include>
-                <include>**/*.properties</include>
-            </includes>
-            <filtering>true</filtering>
-        </resource>
-        
-        <resource>
-            <directory>src/main/java</directory>
-            <includes>
-                <include>**/*.xml</include>
-            </includes>
-            <filtering>true</filtering>
-        </resource>
-        
-    </resources>
-
-    <pluginManagement>
-      
-      <plugins>
-      	<!--配置Jetty 用mvn jetty:run就可以在8080端口上访问项目-->
-        <plugin>
-          <groupId>org.mortbay.jetty</groupId>   
-          <artifactId>maven-jetty-plugin</artifactId>
-        </plugin>
-
-        <plugin>
-          <groupId>org.mybatis.generator</groupId>
-          <artifactId>mybatis-generator-maven-plugin</artifactId>
-          <version>1.3.3</version>
-          <configuration>
-            <verbose>true</verbose>
-            <overwrite>true</overwrite>
-          </configuration>
-        </plugin>
-        
-      </plugins>
-    </pluginManagement>
-  </build>
-</project>
+  
+  <listener>
+  	<description>Spring listener</description>
+  	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  
+   <!-- 防止Spring内存溢出监听器 -->  
+   <listener>  
+       <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>  
+   </listener> 
+  
+   <!-- Spring MVC servlet -->  
+   <servlet>  
+       <servlet-name>SpringMVC</servlet-name>  
+       <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>  
+       <init-param>  
+           <param-name>contextConfigLocation</param-name>  
+           <param-value>classpath:spring/ApplicationContext-mvc.xml</param-value>  
+       </init-param>  
+       <load-on-startup>1</load-on-startup>  
+       <async-supported>true</async-supported>  
+   </servlet>  
+   <servlet-mapping>  
+       <servlet-name>SpringMVC</servlet-name>  
+       <!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->  
+       <url-pattern>/</url-pattern>  
+   </servlet-mapping>
+  
+  <welcome-file-list>
+  	<welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>  
+  
+</web-app>
