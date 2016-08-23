@@ -1,7 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html  lang="zh">
 <head>
 <title>公共申报系统-注册</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -75,28 +77,18 @@
 					<h2>Sign up</h2>
 				</div>
 
-				<form id="defaultForm" method="post" class="form-horizontal" action="/">
+				<form action="/register/addUser" id="defaultForm" method="post" class="form-horizontal" >
 					<div class="form-group">
 						<label class="col-lg-3 control-label">海关备案代码</label>
 						<div class="col-lg-5">
-							<input type="text" class="form-control" name="username"
-								placeholder="输入海关备案代码" required
-								data-fv-notempty-message="海关备案代码不能为空！"
-								data-fv-stringlength="true" data-fv-stringlength-min="10"
-								data-fv-stringlength-max="10" />
+							<input type="text" class="form-control" name="username" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="col-lg-3 control-label">手机</label>
 						<div class="col-lg-5">
-							<input type="text" class="form-control" name="telephone"
-							    required
-								data-fv-notempty-message="您的手机号不能为空！"
-								data-fv-phone-country="CN"
-								data-fv-phone-message="请输入正确的手机号码！"
-			
-								 />
+							<input type="text" class="form-control" name="telephone"/>
 								 <!-- ata-fv-remote="true" data-fv-remote-url="" -->	
 						</div>
 					</div>
@@ -104,21 +96,14 @@
 					<div class="form-group">
 						<label class="col-lg-3 control-label">电子邮箱</label>
 						<div class="col-lg-5">
-							<input class="form-control" name="email" type="email"
-								data-fv-emailaddress-message="请输入正确的邮箱格式！" />
+							<input class="form-control" name="email" type="email" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label class="col-lg-3 control-label">密码</label>
 						<div class="col-lg-5">
-							<input type="password" class="form-control" name="password"
-								required
-								data-fv-notempty-message="密码不能为空！"
-								data-fv-different="true" data-fv-different-field="username"
-								data-fv-stringlength="true" data-fv-stringlength-min="6"
-								data-fv-stringlength-max="10"
-								data-fv-different-message="密码不能和海关备案代码一样！" />
+							<input type="password" class="form-control" name="password" />
 						</div>
 					</div>
 
@@ -152,7 +137,88 @@
     <script type="text/javascript" src="../../public/javascript/lib/language/zh_CN.js"></script>
     <script type="text/javascript">
 	$(document).ready(function() {
-        $('#defaultForm').formValidation();
+        $('#defaultForm').bootstrapValidator({
+            message: '不能为空！',
+            feedbackIcons: {
+            	/*  valid: 'glyphicon glyphicon-ok',
+                 invalid: 'glyphicon glyphicon-remove',
+                 validating: 'glyphicon glyphicon-refresh' */
+            },
+            fields: {
+                username: {
+                    message: '用户名(海关备案代码)不能为空！',
+                    validators: {
+                        notEmpty: {
+                            message: '用户名(海关备案代码)不能为空！'
+                        },
+                        stringLength: {
+                            min: 10,
+                            max: 10,
+                            message: '海关备案代码为10位！'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_]+$/,
+                            message: '您输入的海关备案代码格式有错！'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: '您的电子邮箱不能为空！'
+                        },
+                        emailAddress: {
+                            message: '请输入正确的邮箱格式，以便更好地注册！'
+                        }
+                    }
+                },
+                telephone:{
+                	validators: {
+                        notEmpty: {
+                            message: '您的手机号不能为空！'
+                        },
+                        phone: {
+                            message: '请输入正确的手机号格式！',
+                            counry: 'CN'
+                        }
+                    }
+                },
+                password:{
+                	validators:{
+                		notEmpty:{
+                			message: '密码不能为空'
+                		},
+                		stringLength: {
+                            min: 6,
+                            max: 10,
+                            message: '密码为6-10位！'
+                        },
+                        different:{
+                        	field: "username",
+                       		message: '密码不能和海关备案代码一样！'
+                        }
+                	}
+                },
+                confirmPassword:{
+                	validators:{
+                		notEmpty:{
+                			message: '确认密码不能为空'
+                		},
+                		stringLength: {
+                            min: 6,
+                            max: 10,
+                            message: '确认密码为6-10位！'
+                        },
+                        identical:{
+                        	field: "password",
+                        	message: "两次输入密码不一致！"
+                        }
+                	}
+                },
+            }
+        });
+        
+        
     });
 	</script>
 </body>
