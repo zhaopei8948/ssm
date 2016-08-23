@@ -1,19 +1,22 @@
 package com.hnjiandao.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/jsp")
+@RequestMapping("/order")
 public class OrderController {
-	@RequestMapping("/order")  
-	public String signup(HttpServletRequest request,Model model){
-		System.out.println("哈哈");
-		
-		
-		return "/register/signup";
+	@RequestMapping(value="/new",method=RequestMethod.POST)  
+	@ResponseBody 
+	public Map<String,String> newOrder(String orderJson){		
+		Map<String,String> map=new HashMap();
+		map.put("word", orderJson);
+		//System.out.println(orderJson);
+		return map;
 	}
 }
