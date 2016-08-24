@@ -53,6 +53,12 @@
     delete from user
     where id = #{id,jdbcType=VARCHAR}
   </delete>
+    <select id="count" resultType="java.lang.Long">
+  	select count(1) from user
+  </select>
+  <select id="selectAll" resultType="com.hnjiandao.domain.User" >
+  	select * from user
+  </select>
   <insert id="insert" parameterType="com.hnjiandao.domain.User">
     <!--
       WARNING - @mbggenerated
@@ -71,6 +77,13 @@
       #{telephone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{authenticationNumber,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertByService" parameterType="com.hnjiandao.domain.User">
+   <!-- 注册添加用户一 -->
+   insert into user (id,username,password,telephone,email)
+   values (#{id,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+   #{email,jdbcType=VARCHAR},#{telephone,jdbcType=VARCHAR}  
+   )
   </insert>
   <insert id="insertSelective" parameterType="com.hnjiandao.domain.User">
     <!--

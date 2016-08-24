@@ -1,22 +1,21 @@
 package com.hnjiandao.controller;
 
 import java.util.ArrayList;
-
-
+import java.util.List;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import com.hnjiandao.domain.User;
+import com.hnjiandao.service.UserService;
 
 /**
  * 注册方法
@@ -30,28 +29,26 @@ import com.hnjiandao.domain.User;
 @Controller
 @RequestMapping("/jsp")
 public class UserController {
-	 private static ArrayList<User> users = new ArrayList<User>(); 
-	
+	@Resource
+	 private UserService userService;
 	/**
 	 * 注册首页 signup.jsp
 	 */
 	@RequestMapping("/register/signup")  
 	public String signup(HttpServletRequest request,Model model){
-		return "/register/signup";
+		return"/register/signup";
 	}
 	
-	@RequestMapping(value="/register/addUser", method={RequestMethod.POST})
-    public @ResponseBody String printUser(@ModelAttribute @Validated User user, BindingResult result) {
-        ModelAndView view = new ModelAndView("redirect:/post");
-       
-        
-        user.setId( "1" + 1);
-        System.out.println(user);
-        user.getUsername();
-        users.add(user);
-        view.addObject("users", users);
-        return "index";
-    }
+	@RequestMapping(value="/addUser",method= {RequestMethod.POST})
+	@ResponseBody
+	public String addUser(HttpServletResponse response,User user) throws Exception {
+		User u = new User();
+		user.setId("321");
+		u = user;
+		System.out.print(user);
+	    this.userService.insertByService(u);
+		return u.toString();
+	}
 	
 	 
 

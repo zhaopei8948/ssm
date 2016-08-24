@@ -77,7 +77,7 @@
 					<h2>Sign up</h2>
 				</div>
 
-				<form action="/register/addUser" id="defaultForm" method="post" class="form-horizontal" >
+				<form action="http://localhost:8080/PublicDeclarationSystem/jsp/addUser" id="defaultForm" method="post" class="form-horizontal" >
 					<div class="form-group">
 						<label class="col-lg-3 control-label">海关备案代码</label>
 						<div class="col-lg-5">
