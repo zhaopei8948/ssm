@@ -55,8 +55,10 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	public Boolean updateOrder(Order order) {
-
-		return null;
+		OverallDataHead head = new OverallDataHead(UUIDHelper.getUUID(), order.getOrderHead());
+		orderheader.updateByOrderNoSelective(head);
+		
+		return true;
 	}
 
 	public Integer isExists(String orderNo) {		

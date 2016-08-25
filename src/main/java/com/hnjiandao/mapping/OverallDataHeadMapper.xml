@@ -149,6 +149,342 @@
     where orderNo =  #{orderNo,jdbcType=VARCHAR}
   </select>
   
+  <!-- begin update -->
+  <update id="updateByOrderNoSelective" parameterType="com.hnjiandao.domain.OverallDataHead">    
+    update overall_data_head
+    <set>
+      <if test="ordertype != null">
+        orderType = #{ordertype,jdbcType=CHAR},
+      </if>      
+      <if test="ebpcode != null">
+        ebpCode = #{ebpcode,jdbcType=VARCHAR},
+      </if>
+      <if test="ebpname != null">
+        ebpName = #{ebpname,jdbcType=VARCHAR},
+      </if>
+      <if test="ebccode != null">
+        ebcCode = #{ebccode,jdbcType=VARCHAR},
+      </if>
+      <if test="ebcname != null">
+        ebcName = #{ebcname,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsvalue != null">
+        goodsValue = #{goodsvalue,jdbcType=DOUBLE},
+      </if>
+      <if test="freight != null">
+        freight = #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="discount != null">
+        discount = #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="taxtotal != null">
+        taxTotal = #{taxtotal,jdbcType=DOUBLE},
+      </if>
+      <if test="acturalpaid != null">
+        acturalPaid = #{acturalpaid,jdbcType=DOUBLE},
+      </if>
+      <if test="currency != null">
+        currency = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerregno != null">
+        buyerRegNo = #{buyerregno,jdbcType=VARCHAR},
+      </if>
+      <if test="buyername != null">
+        buyerName = #{buyername,jdbcType=VARCHAR},
+      </if>
+      <if test="buyeridtype != null">
+        buyerIdType = #{buyeridtype,jdbcType=CHAR},
+      </if>
+      <if test="buyeridnumber != null">
+        buyerIdNumber = #{buyeridnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="paycode != null">
+        payCode = #{paycode,jdbcType=VARCHAR},
+      </if>
+      <if test="payname != null">
+        payName = #{payname,jdbcType=VARCHAR},
+      </if>
+      <if test="paytrcsactionid != null">
+        payTrCsactionId = #{paytrcsactionid,jdbcType=VARCHAR},
+      </if>
+      <if test="batchnumbers != null">
+        batchNumbers = #{batchnumbers,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null">
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneetelephone != null">
+        consigneeTelephone = #{consigneetelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeaddress != null">
+        consigneeAddress = #{consigneeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneeditrict != null">
+        consigneeDitrict = #{consigneeditrict,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="senderusername != null">
+        senderusername = #{senderusername,jdbcType=VARCHAR},
+      </if>
+      <if test="senderuseraddress != null">
+        senderuseraddress = #{senderuseraddress,jdbcType=VARCHAR},
+      </if>
+      <if test="senderusertelephone != null">
+        senderusertelephone = #{senderusertelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="billmode != null">
+        billmode = #{billmode,jdbcType=CHAR},
+      </if>
+      <if test="wasterornot != null">
+        wasterornot = #{wasterornot,jdbcType=CHAR},
+      </if>
+      <if test="botanyornot != null">
+        botanyornot = #{botanyornot,jdbcType=CHAR},
+      </if>
+      <if test="cbecodeinsp != null">
+        cbecodeinsp = #{cbecodeinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="ecpcodeinsp != null">
+        ecpcodeinsp = #{ecpcodeinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="trepcodeinsp != null">
+        trepcodeinsp = #{trepcodeinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="submittime != null">
+        submittime = #{submittime,jdbcType=VARCHAR},
+      </if>
+      <if test="tradecompany != null">
+        tradecompany = #{tradecompany,jdbcType=VARCHAR},
+      </if>
+      <if test="totalfeeunit != null">
+        totalfeeunit = #{totalfeeunit,jdbcType=VARCHAR},
+      </if>
+      <if test="countofgoodstype != null">
+        countofgoodstype = #{countofgoodstype,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null">
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="weightunit != null">
+        weightunit = #{weightunit,jdbcType=VARCHAR},
+      </if>
+      <if test="netweight != null">
+        netweight = #{netweight,jdbcType=DOUBLE},
+      </if>
+      <if test="netweightunit != null">
+        netweightunit = #{netweightunit,jdbcType=VARCHAR},
+      </if>
+      <if test="platformurl != null">
+        platformurl = #{platformurl,jdbcType=VARCHAR},
+      </if>
+      <if test="collusercountryinsp != null">
+        collusercountryinsp = #{collusercountryinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="sendusercountryinsp != null">
+        sendusercountryinsp = #{sendusercountryinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="lmsno != null">
+        lmsno = #{lmsno,jdbcType=VARCHAR},
+      </if>
+      <if test="manualno != null">
+        manualno = #{manualno,jdbcType=VARCHAR},
+      </if>
+      <if test="purchasertelephone != null">
+        purchasertelephone = #{purchasertelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticscode != null">
+        logisticsCode = #{logisticscode,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsname != null">
+        logisticsName = #{logisticsname,jdbcType=VARCHAR},
+      </if>
+      <if test="logisticsno != null">
+        logisticsNo = #{logisticsno,jdbcType=VARCHAR},
+      </if>
+      <if test="billno != null">
+        billNo = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="insuredfee != null">
+        insuredFee = #{insuredfee,jdbcType=DOUBLE},
+      </if>
+      <if test="packno != null">
+        packNo = #{packno,jdbcType=INTEGER},
+      </if>
+      <if test="goodsinfo != null">
+        goodsInfo = #{goodsinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="totaltransfernumber != null">
+        totaltransfernumber = #{totaltransfernumber,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionusercountry != null">
+        collectionusercountry = #{collectionusercountry,jdbcType=VARCHAR},
+      </if>
+      <if test="senderusercountry != null">
+        senderusercountry = #{senderusercountry,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsname != null">
+        goodsname = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="shipname != null">
+        shipname = #{shipname,jdbcType=VARCHAR},
+      </if>
+      <if test="destinationport != null">
+        destinationport = #{destinationport,jdbcType=VARCHAR},
+      </if>
+      <if test="jcbordertime != null">
+        jcbordertime = #{jcbordertime,jdbcType=VARCHAR},
+      </if>
+      <if test="jcborderportinsp != null">
+        jcborderportinsp = #{jcborderportinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="transfertypeinsp != null">
+        transfertypeinsp = #{transfertypeinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="shipnameinsp != null">
+        shipnameinsp = #{shipnameinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="shipcodeinsp != null">
+        shipcodeinsp = #{shipcodeinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="applyportinsp != null">
+        applyportinsp = #{applyportinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="transferregioninsp != null">
+        transferregioninsp = #{transferregioninsp,jdbcType=VARCHAR},
+      </if>
+      <if test="packcategoryinsp != null">
+        packcategoryinsp = #{packcategoryinsp,jdbcType=VARCHAR},
+      </if>
+      <if test="coininsp != null">
+        coininsp = #{coininsp,jdbcType=VARCHAR},
+      </if>
+      <if test="paymenttype != null">
+        paymenttype = #{paymenttype,jdbcType=CHAR},
+      </if>
+      <if test="customerflag != null">
+        customerflag = #{customerflag,jdbcType=CHAR},
+      </if>
+      <if test="payecode != null">
+        payecode = #{payecode,jdbcType=CHAR},
+      </if>
+      <if test="copno != null">
+        copNo = #{copno,jdbcType=VARCHAR},
+      </if>
+      <if test="preno != null">
+        preNo = #{preno,jdbcType=VARCHAR},
+      </if>
+      <if test="assurecode != null">
+        assureCode = #{assurecode,jdbcType=VARCHAR},
+      </if>
+      <if test="emsno != null">
+        emsNo = #{emsno,jdbcType=VARCHAR},
+      </if>
+      <if test="invtno != null">
+        invtNo = #{invtno,jdbcType=VARCHAR},
+      </if>
+      <if test="decltime != null">
+        declTime = #{decltime,jdbcType=VARCHAR},
+      </if>
+      <if test="customscode != null">
+        customsCode = #{customscode,jdbcType=VARCHAR},
+      </if>
+      <if test="portcode != null">
+        portCode = #{portcode,jdbcType=VARCHAR},
+      </if>
+      <if test="iedate != null">
+        ieDate = #{iedate,jdbcType=VARCHAR},
+      </if>
+      <if test="agentcode != null">
+        agentCode = #{agentcode,jdbcType=VARCHAR},
+      </if>
+      <if test="agentname != null">
+        agentName = #{agentname,jdbcType=VARCHAR},
+      </if>
+      <if test="areacode != null">
+        areaCode = #{areacode,jdbcType=VARCHAR},
+      </if>
+      <if test="arecame != null">
+        areCame = #{arecame,jdbcType=VARCHAR},
+      </if>
+      <if test="trademode != null">
+        tradeMode = #{trademode,jdbcType=VARCHAR},
+      </if>
+      <if test="trafmode != null">
+        trafMode = #{trafmode,jdbcType=CHAR},
+      </if>
+      <if test="trafno != null">
+        trafNo = #{trafno,jdbcType=VARCHAR},
+      </if>
+      <if test="voyageno != null">
+        voyageNo = #{voyageno,jdbcType=VARCHAR},
+      </if>
+      <if test="loctno != null">
+        loctNo = #{loctno,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseno != null">
+        licenseNo = #{licenseno,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="wraptype != null">
+        wrapType = #{wraptype,jdbcType=CHAR},
+      </if>
+      <if test="detailscode != null">
+        detailscode = #{detailscode,jdbcType=VARCHAR},
+      </if>
+      <if test="contact != null">
+        contact = #{contact,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedtelephone != null">
+        fixedtelephone = #{fixedtelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="fjname != null">
+        fjname = #{fjname,jdbcType=VARCHAR},
+      </if>
+      <if test="fjtype != null">
+        fjtype = #{fjtype,jdbcType=VARCHAR},
+      </if>
+      <if test="sendctiycode != null">
+        sendctiycode = #{sendctiycode,jdbcType=VARCHAR},
+      </if>
+      <if test="bashstste != null">
+        bashstste = #{bashstste,jdbcType=CHAR},
+      </if>
+      <if test="goodsvaluecode != null">
+        goodsvaluecode = #{goodsvaluecode,jdbcType=VARCHAR},
+      </if>
+      <if test="applyunitname != null">
+        applyunitname = #{applyunitname,jdbcType=VARCHAR},
+      </if>
+      <if test="applyunitcode != null">
+        applyunitcode = #{applyunitcode,jdbcType=VARCHAR},
+      </if>
+      <if test="payename != null">
+        payename = #{payename,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=CHAR},
+      </if>
+      <if test="logisticStatus != null">
+        logistic_status = #{logisticStatus,jdbcType=CHAR},
+      </if>
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where orderNo = #{orderno,jdbcType=VARCHAR}
+  </update>
+  <!-- end udpate --> 
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!--
       WARNING - @mbggenerated
