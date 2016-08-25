@@ -6,4 +6,5 @@ public interface OrderService{
 	Order parseOrder(String orderJson);
 	Boolean saveOrder(Order order);
 	Boolean updateOrder(Order order);	
+	Integer isExists(String orderNo);
 }

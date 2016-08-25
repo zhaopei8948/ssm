@@ -42,7 +42,10 @@ public class OverallDataBody {
 	private String createTime;
 	private String updateTime;
 
-	public OverallDataBody(OrderDetail orderDetail) {
+	public OverallDataBody(String id,String headid,String orderNo,OrderDetail orderDetail) {
+		this.id=id;
+		this.headId=headid;
+		this.orderid=orderNo;
 		this.qty=Integer.valueOf(orderDetail.getQty());
 		this.price=Double.valueOf(orderDetail.getPrice());
 		this.flag=orderDetail.getFlag();

@@ -114,7 +114,8 @@ public class OverallDataHead {
 	private String createTime;
 	private String updateTime;
 
-	public OverallDataHead(OrderHead orderHead) {
+	public OverallDataHead(String id,OrderHead orderHead) {
+		this.id=id;
 		this.orderno=orderHead.getOrderNo();
 		this.goodsvalue=Double.valueOf(orderHead.getGoodsValue());
 		this.freight=Double.valueOf(orderHead.getFreight());
