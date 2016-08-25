@@ -58,4 +58,9 @@ public class OrderServiceImpl implements OrderService {
 
 		return null;
 	}
+
+	public Integer isExists(String orderNo) {		
+		return orderheader.isExists(orderNo);
+	}
+	
 }

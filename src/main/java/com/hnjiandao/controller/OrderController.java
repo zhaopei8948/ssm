@@ -18,7 +18,8 @@ public class OrderController {
 	@ResponseBody 
 	public Order newOrder(String orderJson){		
 		Order order=orderService.parseOrder(orderJson);
-		orderService.saveOrder(order);
+		//orderService.saveOrder(order);
+		System.out.println(orderService.isExists(order.getOrderHead().getOrderNo()));
 		return order;
 	}
 }
