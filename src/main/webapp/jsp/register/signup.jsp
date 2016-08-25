@@ -2,15 +2,27 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+
+	String path = request.getContextPath();
+
+	String basePath = request.getScheme() + "://"
+
+			+ request.getServerName() + ":" + request.getServerPort()
+
+			+ path + "/";
+
+%>
+<!DOCTYPE>
 <html  lang="zh">
 <head>
+<base href="<%=basePath%>">
 <title>公共申报系统-注册</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../../public/css/lib/bootstrap.min.css" />
-<link rel="stylesheet" href="../../public/css/lib/formValidation.css"/>
+<link rel="stylesheet" href="public/css/lib/bootstrap.min.css" />
+<link rel="stylesheet" href="public/css/lib/formValidation.css"/>
 </head>
 <body>
 <!-- head -->
@@ -77,7 +89,7 @@
 					<h2>Sign up</h2>
 				</div>
 
-				<form action="http://localhost:8080/PublicDeclarationSystem/jsp/addUser" id="defaultForm" method="post" class="form-horizontal" >
+				<form action="jsp/addUser" id="defaultForm" method="post" class="form-horizontal" >
 					<div class="form-group">
 						<label class="col-lg-3 control-label">海关备案代码</label>
 						<div class="col-lg-5">
@@ -130,11 +142,11 @@
 			<!-- :form -->
 		</div>
 	</div>
-	<script src="../../public/javascript/lib/jquery-2.0.3.min.js"></script>
-    <script src="../../public/javascript/lib/bootstrap.min.js" ></script>
-	<script type="text/javascript" src="../../public/javascript/lib/formValidation.js"></script>
-		<script type="text/javascript" src="../../public/javascript/lib/validation/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../public/javascript/lib/language/zh_CN.js"></script>
+	<script src="public/javascript/lib/jquery-2.0.3.min.js"></script>
+    <script src="public/javascript/lib/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="public/javascript/lib/formValidation.js"></script>
+		<script type="text/javascript" src="public/javascript/lib/validation/bootstrap.min.js"></script>
+    <script type="text/javascript" src="public/javascript/lib/language/zh_CN.js"></script>
     <script type="text/javascript">
 	$(document).ready(function() {
         $('#defaultForm').bootstrapValidator({

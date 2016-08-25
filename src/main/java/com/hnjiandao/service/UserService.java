@@ -8,6 +8,7 @@ public interface UserService {
    int insertByService(User user);
    List<User> selectAll();
    User selectByPrimaryKey(String id);
-   
+   User selectByName(String username);
+   User selectByLogin(String username,String password);
    
 }

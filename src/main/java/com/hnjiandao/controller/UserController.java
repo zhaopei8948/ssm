@@ -1,7 +1,5 @@
 package com.hnjiandao.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,10 +10,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.servlet.ModelAndView;
 
 import com.hnjiandao.domain.User;
 import com.hnjiandao.service.UserService;
+import com.hnjiandao.util.UUIDHelper;
 
 /**
  * 注册方法
@@ -38,18 +37,53 @@ public class UserController {
 	public String signup(HttpServletRequest request,Model model){
 		return"/register/signup";
 	}
-	
+	/**
+	 * 添加用户
+	 * @param response
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
 	@RequestMapping(value="/addUser",method= {RequestMethod.POST})
 	@ResponseBody
-	public String addUser(HttpServletResponse response,User user) throws Exception {
+	public ModelAndView addUser(HttpServletResponse response,User user) throws Exception {
 		User u = new User();
-		user.setId("321");
+		user.setId(UUIDHelper.getUUID()); 
 		u = user;
 		System.out.print(user);
-	    this.userService.insertByService(u);
-		return u.toString();
+		try{
+			this.userService.insertByService(u);
+		}catch(Exception e){
+			return new ModelAndView("redirect:/jsp/register/signup");
+		}
+	    
+		return new ModelAndView("redirect:/jsp/session/login");
+	}
+	/**
+	 * 登录
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/session/login")  
+	public String login(HttpServletRequest request,Model model){
+		
+		return"/session/login";
+	}
+	@RequestMapping(value="/createLogin",method={RequestMethod.POST})
+	@ResponseBody
+	public ModelAndView createLogin(HttpServletResponse response,String username,String password)throws Exception{
+		System.out.println(username);
+		System.out.println(password);
+//		try{
+			 this.userService.selectByLogin(username, password);
+			 return new ModelAndView("/index");
+//		}catch (Exception e) {
+//			 return new ModelAndView("redirect:/jsp/session/login");
+//		}
+	   
 	}
 	
-	 
-
+	
+    
 }
