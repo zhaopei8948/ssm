@@ -21,10 +21,10 @@ import net.sf.json.JSONObject;
 public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private OverallDataHeadMapper orderheader;
-	
+
 	@Autowired
 	private OverallDataBodyMapper orderDetail;
-	
+
 	public Order parseOrder(String orderJson) {
 		Order order = new Order();
 
@@ -43,13 +43,19 @@ public class OrderServiceImpl implements OrderService {
 
 	public Boolean saveOrder(Order order) {
 		OverallDataHead head = new OverallDataHead(UUIDHelper.getUUID(), order.getOrderHead());
-		orderheader.insertSelective(head);
 
-		for (OrderDetail detail : order.getOrderList()) {
-			OverallDataBody body = new OverallDataBody(UUIDHelper.getUUID(), head.getId(), head.getOrderno(),detail);
-			orderDetail.insertSelective(body);
+		if (orderheader.isExists(order.getOrderHead().getOrderNo()) == 0) {
+			orderheader.insertSelective(head);
+
+			for (OrderDetail detail : order.getOrderList()) {
+				OverallDataBody body = new OverallDataBody(UUIDHelper.getUUID(), head.getId(), head.getOrderno(),
+						detail);
+				orderDetail.insertSelective(body);
+			}
 		}
-	
+		else{
+			updateOrder(order);
+		}
 
 		return null;
 	}
@@ -57,12 +63,20 @@ public class OrderServiceImpl implements OrderService {
 	public Boolean updateOrder(Order order) {
 		OverallDataHead head = new OverallDataHead(UUIDHelper.getUUID(), order.getOrderHead());
 		orderheader.updateByOrderNoSelective(head);
-		
+
+		orderDetail.deleteByOrderId(head.getOrderno());
+
+		String orderId = orderheader.getOrderId(head.getOrderno());
+
+		for (OrderDetail detail : order.getOrderList()) {
+			OverallDataBody body = new OverallDataBody(UUIDHelper.getUUID(), orderId, head.getOrderno(), detail);
+			orderDetail.insertSelective(body);
+		}
+
 		return true;
 	}
 
-	public Integer isExists(String orderNo) {		
+	public Integer isExists(String orderNo) {
 		return orderheader.isExists(orderNo);
 	}
-	
 }

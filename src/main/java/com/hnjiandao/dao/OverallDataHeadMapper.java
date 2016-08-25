@@ -3,6 +3,8 @@ package com.hnjiandao.dao;
 import com.hnjiandao.domain.OverallDataHead;
 
 public interface OverallDataHeadMapper {
+		
+	String getOrderId(String orderNo);
 	
 	int isExists(String orderNo);
 	int updateByOrderNoSelective(OverallDataHead record);

@@ -143,11 +143,19 @@
     create_time, update_time
   </sql>
   
-    <select id="isExists" parameterType="java.lang.String" resultType="java.lang.Integer">   
+  <select id="isExists" parameterType="java.lang.String" resultType="java.lang.Integer">   
     select count(0)  
     from overall_data_head
     where orderNo =  #{orderNo,jdbcType=VARCHAR}
   </select>
+  
+   <select id="getOrderId" parameterType="java.lang.String" resultType="java.lang.String">   
+    select id  
+    from overall_data_head
+    where orderNo =  #{orderNo,jdbcType=VARCHAR}
+  </select>
+  
+  
   
   <!-- begin update -->
   <update id="updateByOrderNoSelective" parameterType="com.hnjiandao.domain.OverallDataHead">    
