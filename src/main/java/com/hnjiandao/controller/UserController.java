@@ -70,6 +70,20 @@ public class UserController {
 		
 		return"/session/login";
 	}
-	 
-
+	@RequestMapping(value="/createLogin",method={RequestMethod.POST})
+	@ResponseBody
+	public ModelAndView createLogin(HttpServletResponse response,String username,String password)throws Exception{
+		System.out.println(username);
+		System.out.println(password);
+//		try{
+			 this.userService.selectByLogin(username, password);
+			 return new ModelAndView("/index");
+//		}catch (Exception e) {
+//			 return new ModelAndView("redirect:/jsp/session/login");
+//		}
+	   
+	}
+	
+	
+    
 }

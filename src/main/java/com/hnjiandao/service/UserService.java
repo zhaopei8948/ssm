@@ -9,5 +9,6 @@ public interface UserService {
    List<User> selectAll();
    User selectByPrimaryKey(String id);
    User selectByName(String username);
+   User selectByLogin(String username,String password);
    
 }

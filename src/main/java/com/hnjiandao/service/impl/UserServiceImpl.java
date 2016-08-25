@@ -32,5 +32,10 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	public User selectByLogin(String username, String password) {
+		// TODO Auto-generated method stub
+		return this.userMapper.selectByLogin(username, password);
+	}
+
 
 }

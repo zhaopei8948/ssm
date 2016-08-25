@@ -47,9 +47,16 @@
   <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
   	<!-- 查询用户名 -->
   	select 
-  	<include refid="Base_Column_List" />
+	 <include refid="Base_Column_List" />
   	from user
   	where username = #{username,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByLogin" parameterType="java.lang.String" resultMap="BaseResultMap" >
+  	<!-- 登录查询判断 -->
+  	select 
+  	<include refid="Base_Column_List" />
+  	from user
+  	where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--
