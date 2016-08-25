@@ -44,6 +44,13 @@
     from user
     where id = #{id,jdbcType=VARCHAR}
   </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	<!-- 查询用户名 -->
+  	select 
+  	<include refid="Base_Column_List" />
+  	from user
+  	where username = #{username,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!--
       WARNING - @mbggenerated

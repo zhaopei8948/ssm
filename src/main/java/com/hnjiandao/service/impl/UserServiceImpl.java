@@ -18,6 +18,9 @@ public class UserServiceImpl implements UserService {
 		return this.userMapper.insertByService(user) ;
 	}
 
+	public User selectByName(String username){
+		return this.userMapper.selectByName(username);
+	}
 
 	public List<User> selectAll() {
 		// TODO Auto-generated method stub
@@ -28,5 +31,6 @@ public class UserServiceImpl implements UserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

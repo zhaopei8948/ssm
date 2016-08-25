@@ -3,11 +3,16 @@ package com.hnjiandao.dao;
 import com.hnjiandao.domain.User;
 
 public interface UserMapper {
+	/**
+	 * 根据用户名判断是否已注册
+	 * @param username
+	 * @return
+	 */
+	User selectByName(String username);
     /**
      *  注册添加用户一
      * 
      */
-	
 	int insertByService(User record);
 	
     /**
