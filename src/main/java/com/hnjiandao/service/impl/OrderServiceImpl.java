@@ -9,6 +9,7 @@ import com.hnjiandao.dao.UserMapper;
 import com.hnjiandao.domain.Order;
 import com.hnjiandao.domain.OrderDetail;
 import com.hnjiandao.domain.OrderHead;
+import com.hnjiandao.domain.OrderHeadReport;
 import com.hnjiandao.domain.OverallDataBody;
 import com.hnjiandao.domain.OverallDataHead;
 import com.hnjiandao.service.OrderService;
@@ -48,8 +49,7 @@ public class OrderServiceImpl implements OrderService {
 			orderheader.insertSelective(head);
 
 			for (OrderDetail detail : order.getOrderList()) {
-				OverallDataBody body = new OverallDataBody(Helper.getUUID(), head.getId(), head.getOrderno(),
-						detail);
+				OverallDataBody body = new OverallDataBody(Helper.getUUID(), head.getId(), head.getOrderNo(),detail);
 				orderDetail.insertSelective(body);
 			}
 		}
@@ -64,12 +64,12 @@ public class OrderServiceImpl implements OrderService {
 		OverallDataHead head = new OverallDataHead(Helper.getUUID(), order.getOrderHead());
 		orderheader.updateByOrderNoSelective(head);
 
-		orderDetail.deleteByOrderId(head.getOrderno());
+		orderDetail.deleteByOrderId(head.getOrderNo());
 
-		String orderId = orderheader.getOrderId(head.getOrderno());
+		String orderId = orderheader.getOrderId(head.getOrderNo());
 
 		for (OrderDetail detail : order.getOrderList()) {
-			OverallDataBody body = new OverallDataBody(Helper.getUUID(), orderId, head.getOrderno(), detail);
+			OverallDataBody body = new OverallDataBody(Helper.getUUID(), orderId, head.getOrderNo(), detail);
 			orderDetail.insertSelective(body);
 		}
 
@@ -78,5 +78,9 @@ public class OrderServiceImpl implements OrderService {
 
 	public Integer isExists(String orderNo) {
 		return orderheader.isExists(orderNo);
+	}
+
+	public OrderHeadReport getOrderHeadReport(String orderId) {
+		return orderheader.selectOrderHeadReportByPrimaryKey(orderId);		
 	}
 }
