@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.hnjiandao.domain.Order;
+import com.hnjiandao.domain.OrderHeadReport;
 import com.hnjiandao.service.OrderService;
 
 @Controller
@@ -21,6 +22,13 @@ public class OrderController {
 		orderService.saveOrder(order);
 		//orderService.updateOrder(order);
 		System.out.println(orderService.isExists(order.getOrderHead().getOrderNo()));
+		return order;
+	}
+	
+	@RequestMapping(value="/getOrder",method=RequestMethod.GET)  
+	@ResponseBody 
+	public OrderHeadReport getOrder(){		
+		OrderHeadReport order=orderService.getOrderHeadReport("4315cac5a7c94a799c1f5c11792d8295");		
 		return order;
 	}
 }

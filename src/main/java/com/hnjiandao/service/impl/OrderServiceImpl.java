@@ -9,6 +9,7 @@ import com.hnjiandao.dao.UserMapper;
 import com.hnjiandao.domain.Order;
 import com.hnjiandao.domain.OrderDetail;
 import com.hnjiandao.domain.OrderHead;
+import com.hnjiandao.domain.OrderHeadReport;
 import com.hnjiandao.domain.OverallDataBody;
 import com.hnjiandao.domain.OverallDataHead;
 import com.hnjiandao.service.OrderService;
@@ -78,5 +79,9 @@ public class OrderServiceImpl implements OrderService {
 
 	public Integer isExists(String orderNo) {
 		return orderheader.isExists(orderNo);
+	}
+
+	public OrderHeadReport getOrderHeadReport(String orderId) {
+		return orderheader.selectOrderHeadReportByPrimaryKey(orderId);		
 	}
 }
