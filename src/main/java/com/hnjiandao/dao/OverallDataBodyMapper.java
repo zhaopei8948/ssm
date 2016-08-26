@@ -1,6 +1,10 @@
 package com.hnjiandao.dao;
 
+import java.util.List;
+
 import com.hnjiandao.domain.OverallDataBody;
+import com.hnjiandao.domain.OverallDataBodyReport;
+
 
 public interface OverallDataBodyMapper {
 
@@ -17,4 +21,6 @@ public interface OverallDataBodyMapper {
 	int updateByPrimaryKeySelective(OverallDataBody record);
 
 	int updateByPrimaryKey(OverallDataBody record);
+	
+	List<OverallDataBodyReport> selectOverallDataBodyReportByOrderId(String orderId);
 }

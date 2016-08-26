@@ -1,5 +1,7 @@
 package com.hnjiandao.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import com.hnjiandao.domain.OrderDetail;
 import com.hnjiandao.domain.OrderHead;
 import com.hnjiandao.domain.OrderHeadReport;
 import com.hnjiandao.domain.OverallDataBody;
+import com.hnjiandao.domain.OverallDataBodyReport;
 import com.hnjiandao.domain.OverallDataHead;
 import com.hnjiandao.service.OrderService;
 import com.hnjiandao.util.Helper;
@@ -83,4 +86,9 @@ public class OrderServiceImpl implements OrderService {
 	public OrderHeadReport getOrderHeadReport(String orderId) {
 		return orderheader.selectOrderHeadReportByPrimaryKey(orderId);		
 	}
+
+	public List<OverallDataBodyReport> getOverallDataBodyReports(String orderId) {		
+		return orderDetail.selectOverallDataBodyReportByOrderId(orderId);
+	}
+	
 }
