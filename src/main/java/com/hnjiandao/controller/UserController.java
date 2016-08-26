@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hnjiandao.domain.User;
 import com.hnjiandao.service.UserService;
 import com.hnjiandao.util.Helper;
+import com.mysql.fabric.xmlrpc.base.Array;
 
 /**
  * 注册方法
@@ -50,24 +52,29 @@ public class UserController {
 	@ResponseBody
 	public ModelAndView addUser(HttpServletResponse response,User user) throws Exception {
 		User u = new User();
+		ModelAndView mv= new ModelAndView();
 		user.setId(Helper.getUUID());
 		user.setPassword(Helper.encryptMD5(user.getPassword()));
 		u = user;
 		try{
 			this.userService.insertByService(u);
+			String[] arr = {u.getEmail(),"公共申报系统--注册"};
+			EmailController.args(arr);
+			mv.setViewName("redirect:/jsp/session/login");
 		}catch(Exception e){
-			return new ModelAndView("redirect:/jsp/register/signup");
+			mv.setViewName("redirect:/jsp/register/signup");;
 		}
-		return new ModelAndView("redirect:/jsp/session/login");
+		return  mv;
 	}
 	/**
 	 * 登录
 	 * @param request
 	 * @param model
 	 * @return
+	 * @throws MessagingException 
 	 */
 	@RequestMapping("/session/login")  
-	public String login(HttpServletRequest request,Model model){
+	public String login(HttpServletRequest request,Model model) {
 		
 		return"/session/login";
 	}
