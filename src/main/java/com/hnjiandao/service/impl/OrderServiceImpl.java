@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
 			orderheader.insertSelective(head);
 
 			for (OrderDetail detail : order.getOrderList()) {
-				OverallDataBody body = new OverallDataBody(UUIDHelper.getUUID(), head.getId(), head.getOrderno(),
+				OverallDataBody body = new OverallDataBody(UUIDHelper.getUUID(), head.getId(), head.getOrderNo(),
 						detail);
 				orderDetail.insertSelective(body);
 			}
@@ -65,12 +65,12 @@ public class OrderServiceImpl implements OrderService {
 		OverallDataHead head = new OverallDataHead(UUIDHelper.getUUID(), order.getOrderHead());
 		orderheader.updateByOrderNoSelective(head);
 
-		orderDetail.deleteByOrderId(head.getOrderno());
+		orderDetail.deleteByOrderId(head.getOrderNo());
 
-		String orderId = orderheader.getOrderId(head.getOrderno());
+		String orderId = orderheader.getOrderId(head.getOrderNo());
 
 		for (OrderDetail detail : order.getOrderList()) {
-			OverallDataBody body = new OverallDataBody(UUIDHelper.getUUID(), orderId, head.getOrderno(), detail);
+			OverallDataBody body = new OverallDataBody(UUIDHelper.getUUID(), orderId, head.getOrderNo(), detail);
 			orderDetail.insertSelective(body);
 		}
 

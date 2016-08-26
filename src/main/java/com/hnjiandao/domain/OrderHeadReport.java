@@ -42,8 +42,8 @@ public class OrderHeadReport {
 	private String sendusercountryinsp; //收货人所在国(检验检疫)"
 	private String paynumber; //支付交易号"
 	private String purchasername; //订购人名称"
-	private String buyerregno; //订购人注册号"
 	private String purchasertelephone; //订购人电话"
+	
 	public String getOrderNo() {
 		return orderNo;
 	}
@@ -290,12 +290,7 @@ public class OrderHeadReport {
 	public void setPurchasername(String purchasername) {
 		this.purchasername = purchasername;
 	}
-	public String getBuyerregno() {
-		return buyerregno;
-	}
-	public void setBuyerregno(String buyerregno) {
-		this.buyerregno = buyerregno;
-	}
+	
 	public String getPurchasertelephone() {
 		return purchasertelephone;
 	}
