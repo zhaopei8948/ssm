@@ -13,7 +13,7 @@ import com.hnjiandao.domain.OrderHeadReport;
 import com.hnjiandao.domain.OverallDataBody;
 import com.hnjiandao.domain.OverallDataHead;
 import com.hnjiandao.service.OrderService;
-import com.hnjiandao.util.UUIDHelper;
+import com.hnjiandao.util.Helper;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -43,14 +43,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	public Boolean saveOrder(Order order) {
-		OverallDataHead head = new OverallDataHead(UUIDHelper.getUUID(), order.getOrderHead());
+		OverallDataHead head = new OverallDataHead(Helper.getUUID(), order.getOrderHead());
 
 		if (orderheader.isExists(order.getOrderHead().getOrderNo()) == 0) {
 			orderheader.insertSelective(head);
 
 			for (OrderDetail detail : order.getOrderList()) {
-				OverallDataBody body = new OverallDataBody(UUIDHelper.getUUID(), head.getId(), head.getOrderNo(),
-						detail);
+				OverallDataBody body = new OverallDataBody(Helper.getUUID(), head.getId(), head.getOrderNo(),detail);
 				orderDetail.insertSelective(body);
 			}
 		}
@@ -62,7 +61,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	public Boolean updateOrder(Order order) {
-		OverallDataHead head = new OverallDataHead(UUIDHelper.getUUID(), order.getOrderHead());
+		OverallDataHead head = new OverallDataHead(Helper.getUUID(), order.getOrderHead());
 		orderheader.updateByOrderNoSelective(head);
 
 		orderDetail.deleteByOrderId(head.getOrderNo());
@@ -70,7 +69,7 @@ public class OrderServiceImpl implements OrderService {
 		String orderId = orderheader.getOrderId(head.getOrderNo());
 
 		for (OrderDetail detail : order.getOrderList()) {
-			OverallDataBody body = new OverallDataBody(UUIDHelper.getUUID(), orderId, head.getOrderNo(), detail);
+			OverallDataBody body = new OverallDataBody(Helper.getUUID(), orderId, head.getOrderNo(), detail);
 			orderDetail.insertSelective(body);
 		}
 

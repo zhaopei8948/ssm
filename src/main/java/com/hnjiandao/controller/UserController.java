@@ -1,12 +1,14 @@
 package com.hnjiandao.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hnjiandao.domain.User;
 import com.hnjiandao.service.UserService;
-import com.hnjiandao.util.UUIDHelper;
+import com.hnjiandao.util.Helper;
 
 /**
  * 注册方法
@@ -48,15 +50,14 @@ public class UserController {
 	@ResponseBody
 	public ModelAndView addUser(HttpServletResponse response,User user) throws Exception {
 		User u = new User();
-		user.setId(UUIDHelper.getUUID()); 
+		user.setId(Helper.getUUID());
+		user.setPassword(Helper.encryptMD5(user.getPassword()));
 		u = user;
-		System.out.print(user);
 		try{
 			this.userService.insertByService(u);
 		}catch(Exception e){
 			return new ModelAndView("redirect:/jsp/register/signup");
 		}
-	    
 		return new ModelAndView("redirect:/jsp/session/login");
 	}
 	/**
@@ -72,18 +73,27 @@ public class UserController {
 	}
 	@RequestMapping(value="/createLogin",method={RequestMethod.POST})
 	@ResponseBody
-	public ModelAndView createLogin(HttpServletResponse response,String username,String password)throws Exception{
-		System.out.println(username);
-		System.out.println(password);
-//		try{
-			 this.userService.selectByLogin(username, password);
-			 return new ModelAndView("/index");
-//		}catch (Exception e) {
-//			 return new ModelAndView("redirect:/jsp/session/login");
-//		}
-	   
+	public ModelAndView createLogin(HttpServletResponse response,HttpServletRequest request, Model model)throws Exception{
+		String name = request.getParameter("username");
+		String password = request.getParameter("password");
+		String pwdMd5 = Helper.encryptMD5(password);
+		Map userMap = new HashMap();
+		ModelAndView mv= new ModelAndView();
+		try{
+			User user = this.userService.selectByName(name);
+				if(pwdMd5.equals(user.getPassword())){
+				    mv.setViewName("index");	
+				
+				}else{
+					userMap.put("error", "用户名或者密码不正确！");
+					mv.setViewName("/session/login");
+					mv.addObject("userMap", userMap);
+				}
+		}catch (Exception e) {
+			userMap.put("error", "用户不存在！");
+			mv.setViewName("/session/login");
+			mv.addObject("userMap", userMap);
+		}
+		return mv;
 	}
-	
-	
-    
 }

@@ -10,5 +10,4 @@ public interface UserService {
    User selectByPrimaryKey(String id);
    User selectByName(String username);
    User selectByLogin(String username,String password);
-   
 }

@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
-
-	String path = request.getContextPath();
-
-	String basePath = request.getScheme() + "://"
-
-			+ request.getServerName() + ":" + request.getServerPort()
-
-			+ path + "/";
-
-%>
+<%@ include file="../default/pubTop.jsp" %>
 <!DOCTYPE>
 <html>
 <head>
@@ -63,7 +51,7 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+        <li><a href="sp/register/signup">注册</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -87,8 +75,17 @@
 				<div class="page-header">
 					<h2>Login</h2>
 				</div>
-
-				<form action="jsp/createLogin" id="defaultForm" method="post" class="form-horizontal" >
+				<%  %>
+					<div class="alert alert-warning alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<strong>警告!</strong> ${ userMap.error }
+					</div>
+			     <%  %>		
+					<form action="jsp/createLogin" id="defaultForm" method="post" class="form-horizontal" >
+				<center></center>
 					<div class="form-group">
 						<label class="col-lg-3 control-label">用户名</label>
 						<div class="col-lg-5">
