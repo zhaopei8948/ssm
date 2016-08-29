@@ -90,5 +90,13 @@ public class OrderServiceImpl implements OrderService {
 	public List<OverallDataBodyReport> getOverallDataBodyReports(String orderId) {		
 		return orderDetail.selectOverallDataBodyReportByOrderId(orderId);
 	}
-	
+
+	public Boolean receiveOrderReceipt(String receiptJson) {		
+		JSONObject receipt = JSONObject.fromObject(JSONObject.fromObject(receiptJson).get("OrderReturn"));	
+		OverallDataHead head = new OverallDataHead();
+		head.setOrderNo(receipt.getString("orderNo"));
+		head.setOrderStatus(receipt.getString("returnStatus"));
+		orderheader.updateByOrderNoSelective(head);		
+		return true;
+	}	
 }

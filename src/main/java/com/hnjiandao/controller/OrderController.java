@@ -1,7 +1,14 @@
 package com.hnjiandao.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +24,8 @@ import com.hnjiandao.domain.OrderHeadReport;
 import com.hnjiandao.domain.OrderReport;
 import com.hnjiandao.domain.OverallDataBodyReport;
 import com.hnjiandao.service.OrderService;
+
+import net.sf.json.JSONObject;
 
 
 @Controller
@@ -49,7 +58,7 @@ public class OrderController {
 	
 	@RequestMapping(value="/getOrderReport", produces = "application/json; charset=utf-8",method=RequestMethod.GET)  
 	@ResponseBody 
-	public String getOrderReport(){
+	public String getOrderReport() throws ClientProtocolException, IOException{
 		OrderClientReport clientReport=new OrderClientReport();
 		
 		OrderHeadReport order=orderService.getOrderHeadReport("c4f76a453cfd4b3b9d93add6063d4959");	
@@ -63,6 +72,28 @@ public class OrderController {
 		Gson gson=new GsonBuilder().setLenient().setPrettyPrinting().create();
 		String result=gson.toJson(clientReport);
 		System.out.println(result);
+		//------------------------------------------------------------
+		
+		CloseableHttpClient httpClient =HttpClients.createDefault();  
+        HttpPost method = new HttpPost("");
+        StringEntity entity = new StringEntity(result, "utf-8");
+        entity.setContentEncoding("UTF-8");
+        entity.setContentType("text/plain");
+        method.setEntity(entity);
+        
+        HttpResponse back = httpClient.execute(method);
+        
+        if (back.getStatusLine().getStatusCode() == 200) {
+        	System.out.println("发送成功");
+        }
 		return result;
+	}
+	
+	@RequestMapping(value="/orderReceipt",method=RequestMethod.POST)  
+	@ResponseBody 
+	public String orderReceipt(String receiptJson){
+		System.out.println(receiptJson);
+		Boolean result=orderService.receiveOrderReceipt(receiptJson);		
+		return result.toString();
 	}
 }
