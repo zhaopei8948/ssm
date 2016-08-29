@@ -6,6 +6,14 @@ public class OrderBaseTransfer {
 	private String dxpMode;//"报文传输模式"
 	private String dxpId;//"报文传输编号"
 	
+	
+	public OrderBaseTransfer(String copCode,String copName,String dxpMode,String dxpId){
+		this.copCode=copCode;
+		this.copName=copName;
+		this.dxpMode=dxpMode;
+		this.dxpId= dxpId;
+	}
+	
 	public String getCopCode() {
 		return copCode;
 	}
