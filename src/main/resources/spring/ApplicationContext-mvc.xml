@@ -16,7 +16,9 @@
 	
 	<mvc:annotation-driven />
 	<mvc:resources location="/public/css/" mapping="public/css/**/**/**"></mvc:resources>
+	<mvc:resources location="/public/css/font/" mapping="public/css/font/**/**"></mvc:resources>
 	<mvc:resources location="/public/javascript/" mapping="public/javascript/**/**/**"></mvc:resources>
+	<mvc:resources location="/public/image/" mapping="public/image/**/**"></mvc:resources>
 	<!-- 对静态资源文件的访问 不支持访问WEB-INF目录 -->
 	<mvc:default-servlet-handler />
 	
