@@ -24,6 +24,8 @@ public class EmailController {
         // 配置发送邮件的环境属性
     	System.out.println(arr[0]);
     	System.out.println(arr[1]);
+    	String emailUser = arr[0];
+    	String emailStr = arr[1];
         final Properties props = new Properties();
         /*
          * 可用的属性： mail.store.protocol / mail.transport.protocol / mail.host /
@@ -57,18 +59,18 @@ public class EmailController {
         message.setFrom(form);
 
         // 设置收件人
-        InternetAddress to = new InternetAddress(arr[0]);
+        InternetAddress to = new InternetAddress(emailUser);
         message.setRecipient(RecipientType.TO, to);
 
         // 设置抄送
-        InternetAddress cc = new InternetAddress();
-        message.setRecipient(RecipientType.CC, cc);
+//        InternetAddress cc = new InternetAddress();
+//        message.setRecipient(RecipientType.CC, cc);
 
         // 设置密送，其他的收件人不能看到密送的邮件地址
-        InternetAddress bcc = new InternetAddress();
-        message.setRecipient(RecipientType.CC, bcc);
+//        InternetAddress bcc = new InternetAddress();
+//        message.setRecipient(RecipientType.CC, bcc);
         // 设置邮件标题
-        message.setSubject(arr[1]);
+        message.setSubject(emailStr);
 
         // 设置邮件的内容体
         message.setContent("<a href='http://www.baidu.com'>测试的HTML邮件</a>", "text/html;charset=UTF-8");

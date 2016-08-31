@@ -22,6 +22,11 @@ import com.hnjiandao.util.Helper;
 import com.mysql.fabric.xmlrpc.base.Array;
 
 /**
+ * @author dingfj
+ * @param response
+ * @param user
+ * @return
+ * @throws Exception
  * 注册方法
  *   验证：1.验证该海关备案代码是否本地注册过
  *       2.验证该海关备案代码是否海关备案
@@ -99,16 +104,31 @@ public class UserController {
 				}
 		}catch (Exception e) {
 			userMap.put("error", "用户不存在！");
-			mv.setViewName("/session/login");
+			mv.setViewName("/sesson/login");
 			mv.addObject("userMap", userMap);
 		}
 		return mv;
 	}
-	
+	/**
+	 * 邮箱验证
+	 * @param request
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/register/emailActivate")  
 	public String emailActivate(HttpServletRequest request,Model model) {
 		
 		return"/register/emailActivate";
 	}
-	
+	/**
+	 * 
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/register/emailUp")
+	public String emailUp(HttpServletRequest request,Model model){
+		
+		return "/register/emailUp";
+	}
 }
