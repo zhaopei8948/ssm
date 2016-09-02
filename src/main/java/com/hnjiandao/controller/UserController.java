@@ -3,11 +3,11 @@ package com.hnjiandao.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,7 +38,7 @@ import com.mysql.fabric.xmlrpc.base.Array;
 @Controller
 @RequestMapping("/jsp")
 public class UserController {
-	@Resource
+	@Autowired
 	 private UserService userService;
 	/**
 	 * 注册首页 signup.jsp

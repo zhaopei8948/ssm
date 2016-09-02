@@ -1,6 +1,8 @@
 package com.hnjiandao.util;
 
 import java.security.MessageDigest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 public class Helper {
@@ -39,6 +41,15 @@ public static String  encryptMD5(String data) throws Exception {
          return null;
      }
 }
-	
+/**
+ * 时间	
+ * @return
+ */
+public static String nowDate() {
+	  Date nowTime = new Date(System.currentTimeMillis());
+	  SimpleDateFormat sdFormatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	  String retStrFormatNowDate = sdFormatter.format(nowTime);
+	  return retStrFormatNowDate;
+	}
 	
 }
