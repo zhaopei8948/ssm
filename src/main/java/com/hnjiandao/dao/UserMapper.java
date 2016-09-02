@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import com.hnjiandao.domain.User;
 
 public interface UserMapper {
+	int updateEmailById(String id);
 	/**
 	 * 根据用户名判断是否已注册
 	 * @param username

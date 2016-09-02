@@ -9,6 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hello World!!! ${ user.userName }!</h1>
+	<h1>Hello World!!!s ${ user.username }!</h1>
 </body>
 </html>

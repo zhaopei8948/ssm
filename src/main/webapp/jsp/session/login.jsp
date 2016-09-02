@@ -37,7 +37,7 @@
             <a class="hiddenanchor" id="tologin"></a>
             <div id="wrapper">
                 <div id="login" >
-                   <form action="jsp/createLogin" id="defaultForm" method="post" class="form-horizontal" >
+                   <form action="jsp/createLogin" id="loginForm" method="post" class="form-horizontal" >
                  
                         <h1><strong>登录</strong></h1> 
                        
@@ -82,7 +82,7 @@
     <script type="text/javascript" src="public/javascript/lib/language/zh_CN.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-        $('#defaultForm').bootstrapValidator({
+        $('#loginForm').bootstrapValidator({
             message: '不能为空！',
             feedbackIcons: {
             	/*  valid: 'glyphicon glyphicon-ok',

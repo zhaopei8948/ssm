@@ -12,7 +12,7 @@
 		<!-- basic styles -->
 		<link href="public/css/lib/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="public/css/lib/font-awesome.min.css" />
-
+		<link rel="stylesheet" href="public/css/lib/formValidation.css"/>
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="public/css/lib/font-awesome-ie7.min.css" />
 		<![endif]-->
@@ -70,9 +70,7 @@
     height: 500px
 }
 em{color: blue}
-</style>
-
-<body>
+</style><body>
 <div class="navbar navbar-default" id="navbar">
 			<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
@@ -119,7 +117,7 @@ em{color: blue}
 								<li class="divider"></li>
 
 								<li>
-									<a href="#">
+									<a href="jsp/logout">
 										<i class="icon-off"></i>
 										退出
 									</a>
@@ -130,31 +128,35 @@ em{color: blue}
 				</div><!-- /.navbar-header -->
 			</div><!-- /.container -->
 		</div>
-<div class="container" id="main-container">
+<div class="container">
       <div class="jumbotron">
         <div class="page-header">
-          <h1>邮箱激活 <small>须知</small></h1>
+          <h1>邮箱修改 <small></small></h1>
         </div>
-        <p>&nbsp;&nbsp;尊敬的用户，您好</p>
-        <p>&nbsp;&nbsp;欢迎您成为本平台的用户，您的邮箱为  <em id="email">785113099@qsq.com</em>  为了更好地为您服务请点击下方按钮前往邮箱进行邮箱验证，完成账户激活，谢谢！</p>
-        <p>
-          <div clall="row" >
-          <a class="col-lg-3 btn btn-lg btn-primary" href="javascript:void(0);" id="gotoemail" target="_blank">前往邮箱激活账户 »</a>
-          <div class="col-sm-7 col-lg-offset-2" id="email-error"></div>
-          </div>
-        </p>
-        <br />
-          <br />          <div class="form-group">
-						<div class="col-lg-8 col-lg-offset-1">
-							<p><small>没有收到邮件您可以查看一下帮助：</small></p>
-							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>1.查看您的邮件垃圾内(个别邮箱会把该邮件看作垃圾邮件)</small></p>
-							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>2.请检查邮箱地址是否正确，您可以  <em><a href="jsp/register/emailUp">返回</a></em> 修改您的邮箱</small></p>
-							<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>3.若仍未收到确认，请尝试  >> <button type="button" class="btn btn-xs">发送</button></small></p>
-						</div>
-					</div>
+        <div class="row">
+		        <!-- form: -->
+		        <section>
+		            <div class="col-lg-8 col-lg-offset-2">
+		                <form id="emailForm" method="post" class="form-horizontal" action="jsp/emailFix">
+  							<div class="form-group">
+		                        <label class="col-lg-3 control-label">邮&nbsp;&nbsp;箱：</label>
+		                        <div class="col-lg-8">
+		                            <input class="form-control" name="email" type="email" required data-fv-emailaddress-message="邮箱格式不正确！"  data-fv-notempty-message="邮箱不能为空！" data-fv-identical="true"  />
+		                        </div>
+		                    </div>
+		                    <div class="form-group">
+		                        <div class="col-lg-9 col-lg-offset-3">
+		                            <button type="submit" class="btn btn-primary">提  交</button>
+		                        </div>
+		                    </div>
+		                </form>
+		            </div>
+		        </section>
+		        <!-- :form -->
+		    </div>
       </div>
 
-    </div>
+</div>
 
 		<!-- basic scripts -->
 
@@ -176,11 +178,40 @@ em{color: blue}
 		</script>
 		<script src="public/javascript/lib/bootstrap.min.js"></script>
 		<script src="public/javascript/lib/typeahead-bs2.min.js"></script>
-
+		<script type="text/javascript" src="public/javascript/lib/formValidation.js"></script>
+		<script type="text/javascript" src="public/javascript/lib/validation/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="public/javascript/lib/language/zh_CN.js"></script>
 		<!-- page specific plugin scripts -->
 
 		<!--[if lte IE 8]>
 		  <script src="public/javascript/lib/excanvas.min.js"></script>
 		<![endif]-->
 </body>
+<script type="text/javascript">
+	$(document).ready(function() {
+        $('#emailForm').bootstrapValidator({
+            message: '不能为空！',
+            feedbackIcons: {
+            	/*  valid: 'glyphicon glyphicon-ok',
+                 invalid: 'glyphicon glyphicon-remove',
+                 validating: 'glyphicon glyphicon-refresh' */
+            },
+            fields: {
+            	 email: {
+                     validators: {
+                         notEmpty: {
+                             message: '邮箱不能为空！'
+                         },
+                         emailAddress: {
+                             message: '为确保邮箱验证成功，请输入正确的邮箱格式！'
+                         }
+                     }
+                 }
+            }
+        });
+        
+        
+    });
+	</script>
+
 </html>

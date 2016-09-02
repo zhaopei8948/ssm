@@ -1,16 +1,18 @@
 package com.hnjiandao.controller;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hnjiandao.domain.User;
 import com.hnjiandao.service.UserService;
 import com.hnjiandao.util.Helper;
-import com.mysql.fabric.xmlrpc.base.Array;
+
 
 /**
  * @author dingfj
@@ -86,29 +88,39 @@ public class UserController {
 	}
 	@RequestMapping(value="/createLogin",method={RequestMethod.POST})
 	@ResponseBody
-	public ModelAndView createLogin(HttpServletResponse response,HttpServletRequest request, Model model)throws Exception{
+	public ModelAndView createLogin(HttpSession session,HttpServletResponse response,HttpServletRequest request, Model model)throws Exception{
 		String name = request.getParameter("username");
 		String password = request.getParameter("password");
 		String pwdMd5 = Helper.encryptMD5(password);
 		Map userMap = new HashMap();
 		ModelAndView mv= new ModelAndView();
-		try{
 			User user = this.userService.selectByName(name);
-				if(pwdMd5.equals(user.getPassword())){
-				    mv.setViewName("index");	
-				
-				}else{
-					userMap.put("error", "用户名或者密码不正确！");
-					mv.setViewName("/session/login");
+				if(user==null){
+					userMap.put("error", "用户不存在！");
+					mv.setViewName("/sesson/login");
 					mv.addObject("userMap", userMap);
 				}
-		}catch (Exception e) {
-			userMap.put("error", "用户不存在！");
-			mv.setViewName("/sesson/login");
-			mv.addObject("userMap", userMap);
-		}
+			
+				if(!pwdMd5.equalsIgnoreCase(user.getPassword())){
+					userMap.put("error", "用户名或者密码不正确！");
+					mv.setViewName("/session/login");
+					mv.addObject("userMap", userMap);	
+				}else{
+					mv.setViewName("index");
+				}
+		//储存用户session
+		session.setAttribute("user", user);
 		return mv;
 	}
+	
+	//用户退出
+	@RequestMapping("/logout")
+	public String logout(HttpSession session)throws Exception{
+		session.invalidate();
+	
+		return "redirect:/jsp/session/login";
+	}
+	
 	/**
 	 * 邮箱验证
 	 * @param request
@@ -131,4 +143,16 @@ public class UserController {
 		
 		return "/register/emailUp";
 	}
+	
+	@RequestMapping(value="/emailFix", method={RequestMethod.POST})
+	@ResponseBody
+	public ModelAndView emailFix(HttpServletRequest request,HttpServletResponse response,Model model){
+		ModelAndView mv = new ModelAndView();
+		String email = request.getParameter("email");
+		System.out.println(email);
+		mv.setViewName("/register/emailActivate");
+		return mv;
+	}
+	
+	
 }

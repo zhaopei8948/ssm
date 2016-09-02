@@ -207,6 +207,11 @@
       </if>
     </trim>
   </insert>
+  <update id="updateEmailById" parameterType="com.hnjiandao.domain.User">
+ 	 update user
+ 	 set email = #{email,jdbcType=VARCHAR}
+ 	 where id = #{id,jdbcType=VARCHAR}
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.hnjiandao.domain.User">
     <!--
       WARNING - @mbggenerated
