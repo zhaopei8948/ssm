@@ -1,0 +1,196 @@
+<script type="text/javascript">
+    try {
+        ace.settings.check('sidebar', 'fixed')
+    } catch (e) {
+    }
+</script>
+
+
+<ul class="nav nav-list">
+    <li class="active list-menu" id="statistics">
+        <a id="main_content">
+            <i class="icon-dashboard"></i>
+            <span class="menu-text"> 控制台 </span>
+        </a>
+    </li>
+
+    <li class="list-menu" id="order-list">
+        <a href="#">
+            <i class="icon-table"></i>
+            <span class="menu-text"> 订单管理 </span>
+        </a>
+    </li>
+    <li class="list-menu" id="trans-list">
+        <a href="#">
+            <i class="icon-table"></i>
+            <span class="menu-text"> 运单管理 </span>
+        </a>
+    </li>
+    <li class="list-menu" id="pay-list">
+        <a href="#">
+            <i class="icon-table"></i>
+            <span class="menu-text"> 支付单管理 </span>
+        </a>
+    </li>
+
+    <li class="list-menu" id="detail-list">
+        <a href="#" class="dropdown-toggle">
+            <i class="icon-table"></i>
+            <span class="menu-text"> 清单管理 </span>
+
+            <b class="arrow icon-angle-down"></b>
+        </a>
+
+        <ul class="submenu">
+            <li>
+                <a href="#">
+                    <i class="icon-double-angle-right"></i>
+                    组件
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="icon-double-angle-right"></i>
+                    按钮 &amp; 图表
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="icon-double-angle-right"></i>
+                    树菜单
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="icon-double-angle-right"></i>
+                    jQuery UI
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="icon-double-angle-right"></i>
+                    可拖拽列表
+                </a>
+            </li>
+
+            <li>
+                <a href="#" class="dropdown-toggle">
+                    <i class="icon-double-angle-right"></i>
+
+                    三级菜单
+                    <b class="arrow icon-angle-down"></b>
+                </a>
+
+                <ul class="submenu">
+                    <li>
+                        <a href="#">
+                            <i class="icon-leaf"></i>
+                            第一级
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="dropdown-toggle">
+                            <i class="icon-pencil"></i>
+
+                            第四级
+                            <b class="arrow icon-angle-down"></b>
+                        </a>
+
+                        <ul class="submenu">
+                            <li>
+                                <a href="#">
+                                    <i class="icon-plus"></i>
+                                    添加产品
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#">
+                                    <i class="icon-eye-open"></i>
+                                    查看商品
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+
+
+    <li>
+        <a href="#" class="dropdown-toggle">
+            <i class="icon-cog"></i>
+
+            <span class="menu-text">
+                    系统设置
+                    <span class="badge badge-primary ">5</span>
+                </span>
+
+            <b class="arrow icon-angle-down"></b>
+        </a>
+
+        <ul class="submenu">
+            <li>
+                <a href="#">
+                    <i class="icon-double-angle-right"></i>
+                    参数配置
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="icon-double-angle-right"></i>
+                    用户管理
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="icon-double-angle-right"></i>
+                    系统配置
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    <i class="icon-double-angle-right"></i>
+                    组管理
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul><!-- /.nav-list -->
+
+<div class="sidebar-collapse" id="sidebar-collapse">
+    <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+</div>
+
+
+<script type="text/javascript">
+    try {
+        ace.settings.check('sidebar', 'collapsed')
+    } catch (e) {
+    }
+</script>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='../../public/javascript/lib/jquery-2.0.3.min.js'>" + "<" + "script>");
+</script>
+<script src="../../public/javascript/lib/ace-elements.min.js"></script>
+<script src="../../public/javascript/lib/ace.min.js"></script>
+<script src="../../public/javascript/lib/jquery-ui-1.10.3.full.min.js"></script>
+<!-- 根据id名找对应模块   id名要与模块名相对应 -->
+<script>
+    $(".sidebar .nav .list-menu").click(function () {
+        var id = $(this).attr("id");
+        var url = "_" + id + ".html";
+        var str = $(".list-menu"+"#"+id+" .menu-text").text();
+        $(".breadcrumb .active").text(str);
+        $(".page-content").load(url);
+    });
+</script>

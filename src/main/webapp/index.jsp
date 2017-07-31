@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <body>
-<h2>Hello World!
+<h2>Hello World!更好地规范化
 ${ user.userName }
 </h2>
 </body>
