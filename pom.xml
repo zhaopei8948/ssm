@@ -1,83 +1,83 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.hnjiandao</groupId>
-	<artifactId>PublicDeclarationSystem</artifactId>
+	<groupId>com.github</groupId>
+	<artifactId>ssm</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>PublicDeclarationSystem Maven Webapp</name>
+	<name>ssm Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
-
-		<!-- spring 4.3.2 -->
+		
+		<!-- spring 4.3.10 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>4.3.10.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-beans</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>4.3.10.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>4.3.10.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>4.3.10.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>4.3.10.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>4.3.10.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>4.3.10.RELEASE</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>4.3.2.RELEASE</version>
+			<version>4.3.10.RELEASE</version>
 		</dependency>
-		<!-- end spring 4.3.2 -->
+		<!-- end spring 4.3.10 -->
 
 		<!-- mybatis-spring -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
-			<version>1.3.0</version>
+			<version>1.3.1</version>
 		</dependency>
 
 		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
-			<version>3.4.1</version>
+			<version>3.4.4</version>
 		</dependency>
 
 		<!-- druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>1.0.24</version>
+			<version>1.1.2</version>
 		</dependency>
 
 		<dependency>
@@ -89,7 +89,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.39</version>
+			<version>8.0.7-dmr</version>
 		</dependency>
 
 		<dependency>
@@ -107,7 +107,7 @@
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.2</version>
+			<version>1.3.3</version>
 		</dependency>
 
 		<dependency>
@@ -119,26 +119,26 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>2.8.1</version>
+			<version>2.9.0.pr4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.8.1</version>
+			<version>2.9.0.pr4</version>
 		</dependency>
 
 		<!-- 分页插件 -->
 		<dependency>
 			<groupId>com.github.pagehelper</groupId>
 			<artifactId>pagehelper</artifactId>
-			<version>4.1.6</version>
+			<version>5.0.3</version>
 		</dependency>
 
 		<!-- gson -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-			<version>2.7</version>
+			<version>2.8.1</version>
 		</dependency>
 
 		<dependency>
@@ -157,12 +157,12 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.2</version>
+			<version>4.5.3</version>
 		</dependency>
 
 	</dependencies>
 	<build>
-		<finalName>PublicDeclarationSystem</finalName>
+		<finalName>ssm</finalName>
 
 		<!-- 把src/main/java/中mybatis的文件，打包到相应位置 -->
 		<resources>
@@ -194,13 +194,24 @@
 					<artifactId>maven-jetty-plugin</artifactId>
 				</plugin>
 
+				<!-- mvn mybatis-generator:generate 生成代码 -->
 				<plugin>
 					<groupId>org.mybatis.generator</groupId>
 					<artifactId>mybatis-generator-maven-plugin</artifactId>
-					<version>1.3.3</version>
+					<version>1.3.5</version>
 					<configuration>
 						<verbose>true</verbose>
 						<overwrite>true</overwrite>
+					</configuration>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.8</source>
+						<target>1.8</target>
+						<encoding>UTF-8</encoding>
 					</configuration>
 				</plugin>
 
